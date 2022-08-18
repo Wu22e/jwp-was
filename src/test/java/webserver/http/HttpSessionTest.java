@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HttpSessionTest {
     @DisplayName("HttpSession 객체를 생성 한다.")
     @Test
-    void create_HttpSession() {
+    void createHttpSession() {
         HttpSession httpSession = new HttpSession(UUID.randomUUID().toString(), new HashMap<>());
         assertThat(httpSession).isNotNull().isInstanceOf(HttpSession.class);
     }

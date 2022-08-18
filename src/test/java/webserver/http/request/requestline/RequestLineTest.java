@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class RequestLineTest {
     @Test
     @DisplayName("RequestLine 객체를 생성한다.")
-    void create_RequestLine() {
+    void createRequestLine() {
         RequestLine requestLine = new RequestLine(Method.GET, new Path("/users", null), new Protocol(ProtocolType.HTTP, Version.ONE_ONE));
         assertThat(requestLine).isNotNull().isInstanceOf(RequestLine.class);
     }
@@ -22,19 +22,19 @@ class RequestLineTest {
     @ParameterizedTest
     @NullAndEmptySource
     @DisplayName("요청 값이 null 이거나 빈 값일 경우 예외가 발생한다.")
-    void throw_exception_request_null_or_empty(String request) {
+    void throwExceptionRequestNullOrEmpty(String request) {
         assertThatThrownBy(() -> RequestLine.parse(request)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("HTTP 요청을 공백으로 구분한 데이터 갯수가 3이 아닐 경우 예외가 발생한다.")
-    void throw_exception_request_parse_element_number_not_3() {
+    void throwExceptionRequestParseElementNumberNot3() {
         assertThatThrownBy(() -> RequestLine.parse("GET users HTTP/1.1 test")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("GET 요청에 대한 RequestLine 을 파싱한다.")
-    void parse_GET_RequestLine() {
+    void parseGetRequestLine() {
         String request = "GET /users HTTP/1.1";
         RequestLine requestLine = RequestLine.parse(request);
         assertThat(requestLine).isEqualTo(new RequestLine(Method.GET, new Path("/users", new QueryString(Collections.emptyMap())), new Protocol(ProtocolType.HTTP, Version.ONE_ONE)));
@@ -42,7 +42,7 @@ class RequestLineTest {
 
     @Test
     @DisplayName("POST 요청에 대한 RequestLine 을 파싱한다.")
-    void parse_POST_RequestLine() {
+    void parsePostRequestLine() {
         String request = "POST /users HTTP/1.1";
         RequestLine requestLine = RequestLine.parse(request);
         assertThat(requestLine).isEqualTo(new RequestLine(Method.POST, new Path("/users", new QueryString(Collections.emptyMap())), new Protocol(ProtocolType.HTTP, Version.ONE_ONE)));
@@ -50,7 +50,7 @@ class RequestLineTest {
 
     @Test
     @DisplayName("Query String 이 포함된 요청에 대한 RequestLine 을 파싱한다.")
-    void parse_Query_String_RequestLine() {
+    void parseQueryStringRequestLine() {
         String request = "GET /users?userId=javajigi&password=password&name=JaeSung HTTP/1.1";
         RequestLine requestLine = RequestLine.parse(request);
         Map<String, String> queryStrings = Map.of("userId", "javajigi", "password", "password", "name", "JaeSung");

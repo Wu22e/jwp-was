@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UserTest {
     @Test
     @DisplayName("User 객체를 생성한다.")
-    void create_User() {
+    void createUser() {
         User user = new User("javajigi", "password", "JaeSung", "javajigi@slipp.net");
         assertThat(user).isNotNull().isInstanceOf(User.class);
     }
@@ -21,7 +21,7 @@ class UserTest {
             "password, true",
             "passwords, false"
     })
-    void create_User(String password, boolean trueOrFalse) {
+    void correctPasswordUser(String password, boolean trueOrFalse) {
         User user = new User("javajigi", "password", "JaeSung", "javajigi@slipp.net");
         assertThat(user.isPasswordCorrect(password)).isEqualTo(trueOrFalse);
     }

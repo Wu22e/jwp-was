@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class HttpRequestTest {
     @Test
     @DisplayName("HttpRequest 를 생성한다.")
-    void create_HttpRequest() throws Exception {
+    void createHttpRequest() throws Exception {
         // given & when
         InputStream in = new FileInputStream("./src/test/resources/request.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
@@ -52,7 +52,7 @@ class HttpRequestTest {
 
     @Test
     @DisplayName("HttpRequest 요청이 queryString 과 body 이 함께 들어올 경우에 대한 처리를 한다.")
-    void create_HttpRequest_with_queryString_and_body() throws Exception {
+    void createHttpRequestWithQueryStringAndBody() throws Exception {
         // given & when
         InputStream in = new FileInputStream("./src/test/resources/request_with_query_string_and_body.txt");
         BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
@@ -77,7 +77,7 @@ class HttpRequestTest {
 
     @Test
     @DisplayName("HttpRequest 요청라인, 헤더, 바디가 null 일 경우 예외가 발생한다.")
-    void throw_exception_request_null() {
+    void throwExceptionRequestLineOrHeaderOrBodyNull() {
         assertAll(
                 () -> assertThatThrownBy(() -> new HttpRequest(null, new Header(), new QueryString())).isInstanceOf(IllegalArgumentException.class),
                 () -> assertThatThrownBy(() -> new HttpRequest(new RequestLine(Method.GET, new Path("/index.html", new QueryString()), Protocol.ofHttpV11()), null, new QueryString())).isInstanceOf(IllegalArgumentException.class),

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StatusCodeTest {
     @Test
     @DisplayName("StatusCode 객체를 생성한다.")
-    void create_StatusCode() {
+    void createStatusCode() {
         StatusCode statusCode = StatusCode.OK;
         assertThat(statusCode).isNotNull().isInstanceOf(StatusCode.class);
     }

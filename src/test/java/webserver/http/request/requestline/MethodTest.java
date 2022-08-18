@@ -11,14 +11,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class MethodTest {
     @Test
     @DisplayName("Method 객체를 생성한다.")
-    void create_Method() {
+    void createMethod() {
         Method method = Method.GET;
         assertThat(method).isNotNull().isInstanceOf(Method.class);
     }
 
     @Test
     @DisplayName("GET/POST/PUT/DELETE/PATCH 이외의 Method 는 예외가 발생한다.")
-    void throw_exception_Method() {
+    void throwExceptionMethod() {
         assertThatThrownBy(() -> Method.valueOf("GETS")).isInstanceOf(IllegalArgumentException.class);
     }
 

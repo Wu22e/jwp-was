@@ -52,7 +52,7 @@ class StaticControllerTest {
     @CsvSource(value = {
             "POST, PUT, DELETE, PATCH"
     })
-    void throw_exception_exceptGetMethod(Method method) throws IOException, URISyntaxException {
+    void throwExceptionExceptGetMethod(Method method) throws IOException, URISyntaxException {
         HttpRequest httpRequest = new HttpRequest(new RequestLine(method, new Path("/css/styles.css", new QueryString()), Protocol.ofHttpV11()), new Header(), new QueryString());
         assertThat(controller.process(httpRequest)).isEqualTo(HttpResponse.notFound());
     }

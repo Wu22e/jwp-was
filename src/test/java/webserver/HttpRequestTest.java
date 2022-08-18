@@ -30,7 +30,7 @@ public class HttpRequestTest {
     }
 
     @Test
-    void request_resttemplate() {
+    void requestRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -38,13 +38,13 @@ public class HttpRequestTest {
 
     @Test
     @DisplayName("웹 서버의 최대 스레드 풀 + 대기 큐 사이즈 이하 요청 시 요청을 잘 처리한다.")
-    void thread_pool_size_ok() {
+    void threadPoolSizeOk() {
         requestParallel(350);
     }
 
     @Test
     @DisplayName("웹 서버의 최대 스레드 풀 + 대기 큐 사이즈 초과 요청 시 예외가 발생한다.")
-    void thread_pool_size_over() {
+    void threadPoolSizeOver() {
         assertThatThrownBy(() -> requestParallel(351)).isInstanceOf(RejectedExecutionException.class);
     }
 
@@ -52,7 +52,7 @@ public class HttpRequestTest {
         for (int i = 0; i < requestCount; i++) {
             threadPoolExecutor.execute(() -> {
                 try {
-                    request_resttemplate();
+                    requestRestTemplate();
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

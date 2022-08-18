@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CookieTest {
     @Test
     @DisplayName("Cookie 객체를 생성한다.")
-    void create_Cookie() {
+    void createCookie() {
         Cookie cookie = new Cookie();
         assertThat(cookie).isNotNull().isInstanceOf(Cookie.class);
     }
 
     @Test
     @DisplayName("전달 받은 cookies 값이 null 일 경우 예외가 발생한다.")
-    void exception_cookies_null() {
+    void exceptionCookiesNull() {
         assertThatThrownBy(() -> new Cookie(null)).isInstanceOf(IllegalArgumentException.class);
     }
 }

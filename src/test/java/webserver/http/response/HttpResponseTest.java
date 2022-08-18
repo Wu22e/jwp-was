@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class HttpResponseTest {
     @Test
     @DisplayName("HttpResponse 를 생성한다.")
-    void create_HttpRequest() {
+    void createHttpRequest() {
         HttpResponse httpResponse = new HttpResponse(new StatusLine(Protocol.ofHttpV11(), StatusCode.OK), new Header(), new byte[0]);
         assertThat(httpResponse).isNotNull().isInstanceOf(HttpResponse.class);
     }
 
     @Test
     @DisplayName("HttpResponse 응답라인, 헤더가 null 일 경우 예외가 발생한다.")
-    void throw_exception_response_null() {
+    void throwExceptionResponseNull() {
         assertAll(
                 () -> assertThatThrownBy(() -> new HttpResponse(null, new Header(), new byte[0])).isInstanceOf(IllegalArgumentException.class),
                 () -> assertThatThrownBy(() -> new HttpResponse(StatusLine.of(Protocol.ofHttpV11(), StatusCode.OK), null, new byte[0])).isInstanceOf(IllegalArgumentException.class)

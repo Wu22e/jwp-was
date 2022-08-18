@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProtocolTypeTest {
     @Test
     @DisplayName("ProtocolType 객체를 생성한다.")
-    void create_ProtocolType() {
+    void createProtocolType() {
         ProtocolType protocolType = ProtocolType.HTTP;
         assertThat(protocolType).isNotNull().isInstanceOf(ProtocolType.class);
     }
